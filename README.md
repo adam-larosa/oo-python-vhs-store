@@ -1,3 +1,6 @@
+About to OO Python sans Alchemy switchup
+
+
 # ActiveRecord VHS Store
 
 ![](AR-vhs-logo.jpg)
