@@ -1,6 +1,9 @@
 import ipdb
 from faker import Faker
 import random 
+import math
+import time
+from datetime import datetime, timedelta
 from lib import *
 
 def seeds():
@@ -53,42 +56,42 @@ def seeds():
     create_movie_joins( the_color_purple, [ adaptation, historical_period_drama, drama ] )
 
     frida = Movie(
-                "Frida",
-                2002,
-                123,
-                "Julie Taymor",
-                "'Frida' chronicles the life Frida Kahlo shared unflinchingly and openly with Diego Rivera, as the young couple took the art world by storm. From her complex and enduring relationship with her mentor and husband to her illicit and controversial affair with Leon Trotsky, to her provocative and romantic entanglements with women, Frida Kahlo lived a bold and uncompromising life as a political, artistic, and sexual revolutionary.",
-                True
+        "Frida",
+        2002,
+        123,
+        "Julie Taymor",
+        "'Frida' chronicles the life Frida Kahlo shared unflinchingly and openly with Diego Rivera, as the young couple took the art world by storm. From her complex and enduring relationship with her mentor and husband to her illicit and controversial affair with Leon Trotsky, to her provocative and romantic entanglements with women, Frida Kahlo lived a bold and uncompromising life as a political, artistic, and sexual revolutionary.",
+        True
     )
     create_movie_joins(frida, [biography, adaptation, history, drama, romance])
 
     queen_of_katwe= Movie(
-                "Queen of Katwe",
-                2016,
-                144,
-                "Mira Nair",
-                "Living in Katwe, a slum in Kampala, Uganda, is a constant struggle for 10-year-old Phiona, her mother Nakku Harriet and younger members of her family. She and her younger brother help their mother sell maize in the market. She also helps care for her baby brother. Her world changes one day when she meets Robert Katende at a missionary program. Katende coaches soccer and teaches children to play chess at a local center. Curious, Phiona approaches and learns the game. She becomes fascinated with it and soon becomes a top player in the group under Katende's guidance.",
-                True
+        "Queen of Katwe",
+        2016,
+        144,
+        "Mira Nair",
+        "Living in Katwe, a slum in Kampala, Uganda, is a constant struggle for 10-year-old Phiona, her mother Nakku Harriet and younger members of her family. She and her younger brother help their mother sell maize in the market. She also helps care for her baby brother. Her world changes one day when she meets Robert Katende at a missionary program. Katende coaches soccer and teaches children to play chess at a local center. Curious, Phiona approaches and learns the game. She becomes fascinated with it and soon becomes a top player in the group under Katende's guidance.",
+        True
     )
     create_movie_joins(queen_of_katwe, [drama, sport, biography])
 
     perspepolis = Movie(
-                "Persepolis",
-                2007,
-                96,
-                "Marjane Satrapi",
-                "In 1970s Iran, Marjane 'Marji' Satrapi watches events through her young eyes and her idealistic family of a long dream being fulfilled of the hated Shah's defeat in the Iranian Revolution of 1979. However as Marji grows up, she witnesses first hand how the new Iran, now ruled by Islamic fundamentalists, has become a repressive tyranny on its own. With Marji dangerously refusing to remain silent at this injustice, her parents send her abroad to Vienna to study for a better life. However, this change proves an equally difficult trial with the young woman finding herself in a different culture loaded with abrasive characters and profound disappointments that deeply trouble her. Even when she returns home, Marji finds that both she and homeland have changed too much and the young woman and her loving family must decide where she truly belongs.",
-                True
+        "Persepolis",
+        2007,
+        96,
+        "Marjane Satrapi",
+        "In 1970s Iran, Marjane 'Marji' Satrapi watches events through her young eyes and her idealistic family of a long dream being fulfilled of the hated Shah's defeat in the Iranian Revolution of 1979. However as Marji grows up, she witnesses first hand how the new Iran, now ruled by Islamic fundamentalists, has become a repressive tyranny on its own. With Marji dangerously refusing to remain silent at this injustice, her parents send her abroad to Vienna to study for a better life. However, this change proves an equally difficult trial with the young woman finding herself in a different culture loaded with abrasive characters and profound disappointments that deeply trouble her. Even when she returns home, Marji finds that both she and homeland have changed too much and the young woman and her loving family must decide where she truly belongs.",
+        True
     )
     create_movie_joins(perspepolis, [animation, war, adaptation, history, biography])
 
     little_women = Movie(
-                "Little Women",
-                1994,
-                118,
-                "Gillian Armstrong",
-                "Louisa May Alcott's autobiographical account of her life with her three sisters in Concord, Massachusetts in the 1860s. With their father fighting in the American Civil War, sisters Jo, Meg, Amy and Beth are at home with their mother, a very outspoken women for her time. The story tells of how the sisters grow up, find love and find their place in the world.",
-                True
+        "Little Women",
+        1994,
+        118,
+        "Gillian Armstrong",
+        "Louisa May Alcott's autobiographical account of her life with her three sisters in Concord, Massachusetts in the 1860s. With their father fighting in the American Civil War, sisters Jo, Meg, Amy and Beth are at home with their mother, a very outspoken women for her time. The story tells of how the sisters grow up, find love and find their place in the world.",
+        True
     )
     create_movie_joins(little_women, [drama, romance, adaptation, biography])
 
@@ -103,72 +106,72 @@ def seeds():
     create_movie_joins(little_women_2, [drama, romance, adaptation, biography])
 
     thelma_and_louise = Movie(
-                "Thelma and Louise",
-                1991,
-                130,
-                "Ridley Scott",
-                "Louise is working in a diner as a waitress and has some problems with her boyfriend Jimmy, who, as a musician, is always on the road. Thelma is married to Darryl who likes his wife to stay quiet in the kitchen so that he can watch football on TV. One day they decide to break out of their normal life and jump in the car and hit the road. Their journey, however, turns into a flight when Louise kills a man who threatens to rape Thelma. They decide to go to Mexico, but soon they are hunted by American police.",
-                False
+        "Thelma and Louise",
+        1991,
+        130,
+        "Ridley Scott",
+        "Louise is working in a diner as a waitress and has some problems with her boyfriend Jimmy, who, as a musician, is always on the road. Thelma is married to Darryl who likes his wife to stay quiet in the kitchen so that he can watch football on TV. One day they decide to break out of their normal life and jump in the car and hit the road. Their journey, however, turns into a flight when Louise kills a man who threatens to rape Thelma. They decide to go to Mexico, but soon they are hunted by American police.",
+        False
     )
     create_movie_joins(thelma_and_louise, [crime, adventure, drama])
 
     alien = Movie(
-                "Alien",
-                1979,
-                117,  
-                "Ridley Scott",
-                "Groundbreaking for 1979 science fiction, Sigourney Weaver’s Ellen Ripley is one of the genre’s most iconic female characters. She’s not a damsel—she’s a badass final girl and the only survivor to defeat the monster that mutilated and destroyed every other member of the Nostromo crew.",
-                False
+        "Alien",
+        1979,
+        117,  
+        "Ridley Scott",
+        "Groundbreaking for 1979 science fiction, Sigourney Weaver’s Ellen Ripley is one of the genre’s most iconic female characters. She’s not a damsel—she’s a badass final girl and the only survivor to defeat the monster that mutilated and destroyed every other member of the Nostromo crew.",
+        False
     )
     create_movie_joins(alien, [horror, sci_fi])
 
     mad_max = Movie(
-                "Mad Max Fury Road",
-                2015,
-                140,
-                "George Miller",
-                "Unearthing feminism in a scorched, hell-on-wheels action flick from road warrior franchise man George Miller isn’t exactly obvious. But though it’s titled after a male character, he is muzzled for much of the film, lending the action to a female imperator and her feminist revolt against the horrors of sexism.",
-                False
+        "Mad Max Fury Road",
+        2015,
+        140,
+        "George Miller",
+        "Unearthing feminism in a scorched, hell-on-wheels action flick from road warrior franchise man George Miller isn’t exactly obvious. But though it’s titled after a male character, he is muzzled for much of the film, lending the action to a female imperator and her feminist revolt against the horrors of sexism.",
+        False
     )
     create_movie_joins(mad_max, [action, adventure, thriller, sci_fi])
 
     mustang = Movie(
-                "Mustang",
-                2015,
-                100,
-                "Deniz Gamze Ergüven",
-                "Early summer. In a village in northern Turkey, Lale and her four sisters are walking home from school, playing innocently with some boys. The immorality of their play sets off a scandal that has unexpected consequences. The family home is progressively transformed into a prison; instruction in homemaking replaces school and marriages start being arranged. The five sisters who share a common passion for freedom, find ways of getting around the constraints imposed on them.",
-                True
+        "Mustang",
+        2015,
+        100,
+        "Deniz Gamze Ergüven",
+        "Early summer. In a village in northern Turkey, Lale and her four sisters are walking home from school, playing innocently with some boys. The immorality of their play sets off a scandal that has unexpected consequences. The family home is progressively transformed into a prison; instruction in homemaking replaces school and marriages start being arranged. The five sisters who share a common passion for freedom, find ways of getting around the constraints imposed on them.",
+        True
     )
     create_movie_joins(mustang, [drama])
 
     girlhood = Movie(
-                "Girlhood",
-                2014,
-                113,
-                "Céline Sciamma",
-                "Céline Sciamma’s Girlhood, a contemporary narrative with a classic plot that isn’t too distant from anything in the Jane Austen canon, follows a French teenager’s slog through gang life on a quest to self-discovery.",
-                True
+        "Girlhood",
+        2014,
+        113,
+        "Céline Sciamma",
+        "Céline Sciamma’s Girlhood, a contemporary narrative with a classic plot that isn’t too distant from anything in the Jane Austen canon, follows a French teenager’s slog through gang life on a quest to self-discovery.",
+        True
     )
     create_movie_joins(girlhood, [drama])
 
     erin = Movie(
-                "Erin Brockovich",
-                2000,
-                113,
-                "Steven Soderbergh",
-                "Erin Brockovich-Ellis is an unemployed single mother, desperate to find a job, but is having no luck. This losing streak even extends to a failed lawsuit against a doctor in a car accident she was in. With no alternative, she successfully browbeats her lawyer to give her a job in compensation for the loss. While no one takes her seriously, with her trashy clothes and earthy manners, that soon changes when she begins to investigate a suspicious real estate case involving the Pacific Gas & Electric Company. What she discovers is that the company is trying quietly to buy land that was contaminated by hexavalent chromium, a deadly toxic waste that the company is improperly and illegally dumping and, in turn, poisoning the residents in the area. As she digs deeper, Erin finds herself leading point in a series of events that would involve her law firm in one of the biggest class action lawsuits in American history against a multi-billion dollar corporation.",
-                False
+        "Erin Brockovich",
+        2000,
+        113,
+        "Steven Soderbergh",
+        "Erin Brockovich-Ellis is an unemployed single mother, desperate to find a job, but is having no luck. This losing streak even extends to a failed lawsuit against a doctor in a car accident she was in. With no alternative, she successfully browbeats her lawyer to give her a job in compensation for the loss. While no one takes her seriously, with her trashy clothes and earthy manners, that soon changes when she begins to investigate a suspicious real estate case involving the Pacific Gas & Electric Company. What she discovers is that the company is trying quietly to buy land that was contaminated by hexavalent chromium, a deadly toxic waste that the company is improperly and illegally dumping and, in turn, poisoning the residents in the area. As she digs deeper, Erin finds herself leading point in a series of events that would involve her law firm in one of the biggest class action lawsuits in American history against a multi-billion dollar corporation.",
+        False
     )
     create_movie_joins(erin, [drama, biography])
 
     babadook = Movie(
-                "The Babadook",
-                2014,
-                95,
-                "Jennifer Kent",
-                "Amelia, who lost her husband in a car crash on the way to give birth to Samuel, their only child, struggles to cope with her fate as a single mom. Samuel's constant fear of monsters and violent reaction to overcome the fear doesn't help her cause either, which makes her friends become distant. When things can not get any worse, they read a strange book in their house about the 'Babadook' monster that hides in the dark areas of their house. Even Amelia seems to feel the effect of Babadook and desperately tries in vain to destroy the book. The nightmarish experiences the two encounter form the rest of the story.",
-                True
+        "The Babadook",
+        2014,
+        95,
+        "Jennifer Kent",
+        "Amelia, who lost her husband in a car crash on the way to give birth to Samuel, their only child, struggles to cope with her fate as a single mom. Samuel's constant fear of monsters and violent reaction to overcome the fear doesn't help her cause either, which makes her friends become distant. When things can not get any worse, they read a strange book in their house about the 'Babadook' monster that hides in the dark areas of their house. Even Amelia seems to feel the effect of Babadook and desperately tries in vain to destroy the book. The nightmarish experiences the two encounter form the rest of the story.",
+        True
     )
     create_movie_joins(babadook, [horror, drama, thriller, mystery])
 
@@ -204,51 +207,99 @@ def seeds():
     # end
 
     ####### Rentals ########
-    puts "✨ creating rentals... ✨"
+    print( "✨ creating rentals... ✨" )
 
-    def find_vhs_id_for_rent
+    def find_vhs_for_rent():
+        vhs_tapes = [ v for v in Vhs.all ]
+        vhs = random.sample( vhs_tapes, 1 )[0]
+        current_rentals = [ r for r in vhs.rentals if r.current == True ]
+        not_currently_rented = len( current_rentals ) < 1
+        if not_currently_rented:
+            return vhs
+        find_vhs_id_for_rent()    
     #     vhs = Vhs.find( Vhs.pluck( :id ).shuffle.sample )
     #     return vhs.id if vhs.rentals.where( current: true ).empty?
     #     find_vhs_id_for_rent
 
-# # create rentals (min 20, max 60)
-# client_ids = Client.pluck( :id )
-# 20.times do
-#     number_of_vhs_rented_at_once = rand(1..3)
-#     number_of_vhs_rented_at_once.times do
-#         Rental.create!(
-#             client: Client.find( client_ids.shuffle.sample ), 
-#             vhs_id: find_vhs_id_for_rent,
-#             current: true,
-#             created_at: Time.now - rand(1..5).days,
-#             updated_at: Time.now
-#         )
-#     end
-# end
 
-# returned_on_date_number = (Rental.count * 0.55).ceil
-# returned_late_number = (Rental.count * 0.15).ceil
-# unreturned_still_late = (Rental.count * 0.1).ceil
+    # create rentals (min 20, max 60)
+    # client_ids = Client.pluck( :id )
+    for i in range( 20 ):
+        number_of_vhs_rented_at_once = random.randint( 1, 3 )
+        for j in range( number_of_vhs_rented_at_once ):
+            now = datetime.now()
+            Rental(
+                random.sample( Client.all, 1 )[0],
+                find_vhs_for_rent(),
+                True,
+                now - timedelta( days = random.randint( 1, 5 ) ),
+                datetime.now()
+            )
+    # 20.times do
+    #     number_of_vhs_rented_at_once = rand(1..3)
+    #     number_of_vhs_rented_at_once.times do
+    #         Rental.create!(
+    #             client: Client.find( client_ids.shuffle.sample ), 
+    #             vhs_id: find_vhs_id_for_rent,
+    #             current: true,
+    #             created_at: Time.now - rand(1..5).days,
+    #             updated_at: Time.now
+    #         )
+    #     end
+    # end
 
-# # creating an amount of time the store has been open
-# now = Time.now
-# opening = now - 10.years
 
-# puts "✨ making some of the rentals be returned on time... ✨"
-# rental_ids = Rental.pluck( :id ).shuffle.shuffle
-# returned_on_date_number.times do
-#     rental_date = Time.at rand( opening.to_i..now.to_i )
-#     returned_date = rental_date + rand( 1..3 ).days
-#     rental = Rental.find( rental_ids.shift )
-#     rental.update!(
-#         current: false,  
-#         created_at: rental_date, 
-#         updated_at: returned_date
-#     )
-#     name = rental.client.name
-#     title = rental.vhs.movie.title
-#     puts "  🍿 #{name} returned #{title} on time."
-# end
+    returned_on_date_number = math.ceil( len( Rental.all ) * 0.55 )
+    # returned_on_date_number = (Rental.count * 0.55).ceil
+    returned_late_number = math.ceil( len( Rental.all ) * 0.15 )
+    # returned_late_number = (Rental.count * 0.15).ceil
+    unreturned_still_late = math.ceil( len( Rental.all ) * 0.1 )
+    # unreturned_still_late = (Rental.count * 0.1).ceil
+
+
+    # creating an amount of time the store has been open
+    years = 10
+    days_per_year = 365.24
+    now = datetime.now()
+    opening = now - timedelta( days = ( years * days_per_year ) )
+    # now = Time.now
+    # opening = now - 10.years
+
+############################################################
+    
+    print( "✨ making some of the rentals be returned on time... ✨" )
+    rentals = Rental.all
+    random.shuffle( rentals ) # "**rentals** needs to get modified in place"
+
+    for returned_on_time in range( returned_on_date_number ):
+        opening_in_unix_time = int( time.mktime( opening.timetuple() ) )
+        now_in_unix_time = int( time.mktime( now.timetuple() ) )
+        rental_unix = random.randint( opening_in_unix_time, now_in_unix_time )
+        rental_date = datetime.fromtimestamp( rental_unix )
+        return_date = rental_date + timedelta( days = random.randint( 1, 3 ) )
+        
+        rental = rentals.pop( random.randrange( len( rentals ) ) )
+        rental.current = False
+        rental.created_at = rental_date
+        rental.updated_at = return_date
+
+        name = rental.client.name
+        title = rental.vhs.movie.title
+        print( "  🍿 {name} returned #{title} on time." )
+    # rental_ids = Rental.pluck( :id ).shuffle.shuffle
+    # returned_on_date_number.times do
+    #     rental_date = Time.at rand( opening.to_i..now.to_i )
+    #     returned_date = rental_date + rand( 1..3 ).days
+    #     rental = Rental.find( rental_ids.shift )
+    #     rental.update!(
+    #         current: false,  
+    #         created_at: rental_date, 
+    #         updated_at: returned_date
+    #     )
+    #     name = rental.client.name
+    #     title = rental.vhs.movie.title
+    #     puts "  🍿 #{name} returned #{title} on time."
+    # end
 
 # puts "\n✨ making some of the rentals be returned late... ✨"
 # returned_late_number.times do

@@ -11,6 +11,10 @@ class Vhs:
         self._add_serial_number()
         Vhs.all.append( self )
 
+    @property
+    def rentals( self ):
+        return [ r for r in Rental.all if r.vhs == self ]
+
 
 
     
