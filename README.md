@@ -1,9 +1,4 @@
-About to OO Python sans Alchemy switchup
-
-
-# ActiveRecord VHS Store
-
-![](AR-vhs-logo.jpg)
+# Python VHS Store
 
 Welcome to your good old neighborhood VHS store. You will build an app that tracks the store inventory, the rentals and the clients. Prepare  for the 80s nostalgia.
 
@@ -25,7 +20,8 @@ You will be working on a six-model domain: `Client`, `Rental`, `Vhs`, `Movie`, `
 
 ## ERD
 
-**NOTE** that the below ERD does not include associations -- these you need to add on your own, together with the association properties. 
+**NOTE** that the below 
+Entity–relationship diagram does not include associations -- these you need to add on your own, together with the association properties. 
 
 ```
   Client 

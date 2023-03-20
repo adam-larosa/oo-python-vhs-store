@@ -1,4 +1,5 @@
 import ipdb
+from seeds import Seeds
 from lib import *
 
 
@@ -27,5 +28,7 @@ mg3 = MovieGenre( m2, g3 )
 mg4 = MovieGenre( m2, g2 )
 
 vhs = Vhs( m1 )
+
+Seeds()
 
 ipdb.set_trace()
