@@ -216,7 +216,7 @@ def seeds():
         not_currently_rented = len( current_rentals ) < 1
         if not_currently_rented:
             return vhs
-        find_vhs_for_rent()    
+        return find_vhs_for_rent()    
     #     vhs = Vhs.find( Vhs.pluck( :id ).shuffle.sample )
     #     return vhs.id if vhs.rentals.where( current: true ).empty?
     #     find_vhs_id_for_rent
@@ -277,15 +277,13 @@ def seeds():
         rental_unix = random.randint( opening_in_unix_time, now_in_unix_time )
         rental_date = datetime.fromtimestamp( rental_unix )
         return_date = rental_date + timedelta( days = random.randint( 1, 3 ) )
-        
         rental = rentals.pop( random.randrange( len( rentals ) ) )
         rental.current = False
         rental.created_at = rental_date
         rental.updated_at = return_date
-
         name = rental.client.name
         title = rental.vhs.movie.title
-        print( "  🍿 {name} returned #{title} on time." )
+        print( f"  🍿 {name} returned {title} on time." )
     # rental_ids = Rental.pluck( :id ).shuffle.shuffle
     # returned_on_date_number.times do
     #     rental_date = Time.at rand( opening.to_i..now.to_i )
@@ -300,8 +298,24 @@ def seeds():
     #     title = rental.vhs.movie.title
     #     puts "  🍿 #{name} returned #{title} on time."
     # end
-    ipdb.set_trace()
-# puts "\n✨ making some of the rentals be returned late... ✨"
+
+    print( f"\n✨ making some of the rentals be returned late... ✨" )
+    for returned_late in range( returned_late_number ):
+        opening_in_unix_time = int( time.mktime( opening.timetuple() ) )
+        now_in_unix_time = int( time.mktime( now.timetuple() ) )
+        rental_unix = random.randint( opening_in_unix_time, now_in_unix_time )
+        
+        rental_date = datetime.fromtimestamp( rental_unix )
+        return_date = rental_date + timedelta( days = random.randint( 22, 30 ) )
+
+        rental = rentals.pop( random.randrange( len( rentals ) ) )
+
+        rental.current = False
+        rental.created_at: rental_date
+        rental.updated_at: return_date
+        name = rental.client.name
+        title = rental.vhs.movie.title
+        print( f"  🍿 {name} was late returning {title}!" )
 # returned_late_number.times do
 #     rented = Time.at rand( opening.to_i..now.to_i )
 #     returned = rented + rand( 21..29 ).days
@@ -316,7 +330,26 @@ def seeds():
 #     puts "  🍿 #{name} was late returning #{title}!"
 # end
 
-# puts "\n✨ making some of the rentals currently past due date... ✨"
+
+
+
+    print( f"\n✨ making some of the rentals currently past due date... ✨" )
+    for returned_late in range( returned_late_number ):
+        opening_in_unix_time = int( time.mktime( opening.timetuple() ) )
+        now_in_unix_time = int( time.mktime( now.timetuple() ) )
+        rental_unix = random.randint( opening_in_unix_time, now_in_unix_time )
+        
+        rent_at = datetime.fromtimestamp( rental_unix )
+        thief_last_seen = rent_at + timedelta( days = random.randint( 37, 75 ) )
+
+        rental = rentals.pop( random.randrange( len( rentals ) ) )
+        rental.current = True
+        rental.created_at = rent_at
+        rental.updated_at = thief_last_seen
+
+        name = rental.client.name
+        title = rental.vhs.movie.title
+        print( f"  🍿 {name} HAS STOLEN {title}!!!" )
 # unreturned_still_late.times do
 #     rented = Time.at rand( opening.to_i..now.to_i )
 #     customer_last_seen = rented + rand( 37..75 ).days
@@ -326,33 +359,40 @@ def seeds():
 #         created_at: rented, 
 #         updated_at: customer_last_seen
 #     )
-#     name = rental.client.name
-#     title = rental.vhs.movie.title
-#     puts "  🍿 #{name} HAS STOLEN #{title}!!!"
-# end
+
 
 
 # # creating one last movie with one vhs tape currently rented by one
 # # client with that as their only rental.
-# puts "\n✨ making the last client only have one rental... ✨"
-# adam = Client.create!( name: "Adam", home_address: "San Francisco" )
-# star = Movie.create!(
-#     title: "Star Wars",
-#     year: 1977,
-#     length: 121,
-#     director: "George Lucas",
-#     description: "Amid a galactic civil war, Rebel Alliance spies have stolen plans to the Galactic Empire's Death Star, a massive space station capable of destroying entire planets. Imperial Senator Princess Leia Organa of Alderaan, secretly one of the Rebellion's leaders, has obtained its schematics, but her starship is intercepted by an Imperial Star Destroyer under the command of the ruthless Darth Vader.",
-#     female_director: false
-# )
-# create_movie_joins star, [action, adventure, drama, sci_fi, war] 
-# Rental.create!(
-#     current: true,
-#     client: adam,
-#     vhs: Vhs.create!( movie: star ),
-#     created_at: Time.now - 5.minutes,
-#     updated_at: Time.now
-# )
-# puts "  🍿 #{adam.name} just rented our only copy of #{star.title}!"
+    print( f"\n✨ making the last client only have one rental... ✨" )
+    adam = Client( "Adam", "San Francisco" )
+    star = Movie(
+        "Star Wars",
+        1977,
+        121,
+        "George Lucas",
+        "Amid a galactic civil war, Rebel Alliance spies have stolen plans to the Galactic Empire's Death Star, a massive space station capable of destroying entire planets. Imperial Senator Princess Leia Organa of Alderaan, secretly one of the Rebellion's leaders, has obtained its schematics, but her starship is intercepted by an Imperial Star Destroyer under the command of the ruthless Darth Vader.",
+        False
+    )
+    create_movie_joins( star, [action, adventure, drama, sci_fi, war] )
+    
+    #opening_in_unix_time = int( time.mktime( opening.timetuple() ) )
+    now_in_unix_time = int( time.mktime( now.timetuple() ) )
+    # rental_unix = random.randint( opening_in_unix_time, now_in_unix_time )
+    now_object = datetime.fromtimestamp( now_in_unix_time )
+    the_past = now_object - timedelta( days = random.randint( 1, 3 ) )
+
+    #rental_date = datetime.fromtimestamp( now_in_unix_time )
+    return_date = datetime.fromtimestamp( now_in_unix_time ) # rental_date + timedelta( days = random.randint( 1, 3 ) )
+    
+    Rental(
+        adam,
+        Vhs( star ),
+        True,
+        the_past,
+        return_date
+    )
+    print( f"  🍿 {adam.name} just rented our only copy of {star.title}!" )
 
 
-# puts "\n\n📼 📼 📼 📼 SEEDED 📼 📼 📼 📼\n"
+    print( "\n\n📼 📼 📼 📼 SEEDED 📼 📼 📼 📼\n" )
