@@ -1,11 +1,15 @@
+import ipdb
 import random
 from .rental import Rental
 
 class Vhs:
-
+    all = []
     def __init__( self, movie ):
         self.movie = movie
+        # _add_serial_number generates a random serial number and
+        # automatically sets the instance's "serial_number" attribute
         self._add_serial_number()
+        Vhs.all.append( self )
 
 
 
@@ -34,7 +38,10 @@ class Vhs:
     @property
     def _is_two_part_title( self ):
         the_title = self.movie.title.split()
-        return bool( the_title[1] ) and ( len( the_title[1] ) > 2 )
+        if len( the_title ) > 1:
+            return bool( the_title[1] ) and ( len( the_title[1] ) > 2 )
+        else:
+            return False
 
     @property
     def serial_number_stub( self ):
@@ -44,10 +51,11 @@ class Vhs:
             words = self.movie.title.split()
             first_word = words[0]
             second_word = words[1]
+            second_word_prefix = ''
             if len(second_word) > 3:
                 second_word_prefix = second_word[:4].replace('s', '').upper()
             return f"{first_word}-{second_word_prefix}"
-        if not self._long_title:
+        if not self._is_long_title:
             title_without_s = self.movie.title.replace('s', '').upper()
             result = title_without_s + '-'
             return result

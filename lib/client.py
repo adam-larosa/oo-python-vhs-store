@@ -1,6 +1,9 @@
 from .rental import Rental
 
 class Client:
-    def __init__( self ):
-        pass
+    all = []
+    def __init__( self, name, home_address ):
+        self.name = name
+        self.home_address = home_address
+        Client.all.append( self )
     

@@ -1,4 +1,6 @@
 class MovieGenre:
     all = []
     def __init__( self, movie, genre ):
-        pass
+        self.movie = movie
+        self.genre = genre
+        MovieGenre.all.append( self )
