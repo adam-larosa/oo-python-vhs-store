@@ -1,4 +1,6 @@
+import ipdb
 from lib import *
+
 
 m1 = Movie( "Young Guns" )
 
@@ -26,4 +28,4 @@ mg4 = MovieGenre( m2, g2 )
 
 vhs = Vhs( m1 )
 
-import ipdb; ipdb.set_trace()
+ipdb.set_trace()
