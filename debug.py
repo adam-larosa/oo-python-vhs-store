@@ -24,4 +24,6 @@ mg3 = MovieGenre( m2, g3 )
 #   i.e. now a Genre "has-many" Movies as well!
 mg4 = MovieGenre( m2, g2 )
 
+vhs = Vhs( m1 )
+
 import ipdb; ipdb.set_trace()
