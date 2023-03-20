@@ -11,11 +11,6 @@ def seeds():
     def create_movie_joins( movie, genre_list ):
         for genre in genre_list:
             MovieGenre( movie, genre )
-        # genre_array.each { |genre| MovieGenre.create!(
-        #     movie_id: movie.id, 
-        #     genre_id: genre.id
-        # )}
-
 
     ####### GENRES ########
     print( "\n✨ creating genres... ✨" )
@@ -187,13 +182,7 @@ def seeds():
     for name in names:
         client = Client( name, fake.address() )
         print( f"  🍿 {client.name}, welcome to our sick vhs store!" )
-    # 20.times do 
-    #     name = Faker::Name.unique.name
-    #     puts "  🍿 #{name}, welcome to our sick vhs store!"
-    #     Client.create!(
-    #         name: name, 
-    #         home_address: Faker::Address.full_address
-    #     )
+
 
     ####### VHS ########
     print( "\n✨ creating vhs... ✨" )
@@ -201,12 +190,7 @@ def seeds():
         movies = [ m for m in Movie.all ]
         movie = random.sample( movies, 1 )[0]
         Vhs( movie )
-    # movie_ids = Movie.pluck( :id )
-    # 60.times do
-    #     Vhs.create!(movie_id: movie_ids.shuffle.sample )
-    # end
 
-    ####### Rentals ########
     print( "✨ creating rentals... ✨" )
 
     def find_vhs_for_rent():
@@ -217,13 +201,7 @@ def seeds():
         if not_currently_rented:
             return vhs
         return find_vhs_for_rent()    
-    #     vhs = Vhs.find( Vhs.pluck( :id ).shuffle.sample )
-    #     return vhs.id if vhs.rentals.where( current: true ).empty?
-    #     find_vhs_id_for_rent
 
-
-    # create rentals (min 20, max 60)
-    # client_ids = Client.pluck( :id )
     for i in range( 20 ):
         number_of_vhs_rented_at_once = random.randint( 1, 3 )
         for j in range( number_of_vhs_rented_at_once ):
@@ -235,41 +213,19 @@ def seeds():
                 now - timedelta( days = random.randint( 1, 5 ) ),
                 datetime.now()
             )
-    # 20.times do
-    #     number_of_vhs_rented_at_once = rand(1..3)
-    #     number_of_vhs_rented_at_once.times do
-    #         Rental.create!(
-    #             client: Client.find( client_ids.shuffle.sample ), 
-    #             vhs_id: find_vhs_id_for_rent,
-    #             current: true,
-    #             created_at: Time.now - rand(1..5).days,
-    #             updated_at: Time.now
-    #         )
-    #     end
-    # end
-
 
     returned_on_date_number = math.ceil( len( Rental.all ) * 0.55 )
-    # returned_on_date_number = (Rental.count * 0.55).ceil
     returned_late_number = math.ceil( len( Rental.all ) * 0.15 )
-    # returned_late_number = (Rental.count * 0.15).ceil
     unreturned_still_late = math.ceil( len( Rental.all ) * 0.1 )
-    # unreturned_still_late = (Rental.count * 0.1).ceil
 
-
-    # creating an amount of time the store has been open
     years = 10
     days_per_year = 365.24
     now = datetime.now()
     opening = now - timedelta( days = ( years * days_per_year ) )
-    # now = Time.now
-    # opening = now - 10.years
 
-############################################################
-    
     print( "✨ making some of the rentals be returned on time... ✨" )
     rentals = Rental.all
-    random.shuffle( rentals ) # "**rentals** needs to get modified in place"
+    random.shuffle( rentals ) 
 
     for returned_on_time in range( returned_on_date_number ):
         opening_in_unix_time = int( time.mktime( opening.timetuple() ) )
@@ -284,20 +240,6 @@ def seeds():
         name = rental.client.name
         title = rental.vhs.movie.title
         print( f"  🍿 {name} returned {title} on time." )
-    # rental_ids = Rental.pluck( :id ).shuffle.shuffle
-    # returned_on_date_number.times do
-    #     rental_date = Time.at rand( opening.to_i..now.to_i )
-    #     returned_date = rental_date + rand( 1..3 ).days
-    #     rental = Rental.find( rental_ids.shift )
-    #     rental.update!(
-    #         current: false,  
-    #         created_at: rental_date, 
-    #         updated_at: returned_date
-    #     )
-    #     name = rental.client.name
-    #     title = rental.vhs.movie.title
-    #     puts "  🍿 #{name} returned #{title} on time."
-    # end
 
     print( f"\n✨ making some of the rentals be returned late... ✨" )
     for returned_late in range( returned_late_number ):
@@ -316,22 +258,6 @@ def seeds():
         name = rental.client.name
         title = rental.vhs.movie.title
         print( f"  🍿 {name} was late returning {title}!" )
-# returned_late_number.times do
-#     rented = Time.at rand( opening.to_i..now.to_i )
-#     returned = rented + rand( 21..29 ).days
-#     rental = Rental.find( rental_ids.shift )
-#     rental.update!(
-#         current: false,  
-#         created_at: rented, 
-#         updated_at: returned
-#     )
-#     name = rental.client.name
-#     title = rental.vhs.movie.title
-#     puts "  🍿 #{name} was late returning #{title}!"
-# end
-
-
-
 
     print( f"\n✨ making some of the rentals currently past due date... ✨" )
     for returned_late in range( returned_late_number ):
@@ -350,20 +276,10 @@ def seeds():
         name = rental.client.name
         title = rental.vhs.movie.title
         print( f"  🍿 {name} HAS STOLEN {title}!!!" )
-# unreturned_still_late.times do
-#     rented = Time.at rand( opening.to_i..now.to_i )
-#     customer_last_seen = rented + rand( 37..75 ).days
-#     rental = Rental.find( rental_ids.shift )
-#     rental.update!(
-#         current: true,  
-#         created_at: rented, 
-#         updated_at: customer_last_seen
-#     )
 
 
-
-# # creating one last movie with one vhs tape currently rented by one
-# # client with that as their only rental.
+    # creating one last movie with one vhs tape currently rented by one
+    # client with that as their only rental.
     print( f"\n✨ making the last client only have one rental... ✨" )
     adam = Client( "Adam", "San Francisco" )
     star = Movie(
@@ -375,15 +291,11 @@ def seeds():
         False
     )
     create_movie_joins( star, [action, adventure, drama, sci_fi, war] )
-    
-    #opening_in_unix_time = int( time.mktime( opening.timetuple() ) )
+
     now_in_unix_time = int( time.mktime( now.timetuple() ) )
-    # rental_unix = random.randint( opening_in_unix_time, now_in_unix_time )
     now_object = datetime.fromtimestamp( now_in_unix_time )
     the_past = now_object - timedelta( days = random.randint( 1, 3 ) )
-
-    #rental_date = datetime.fromtimestamp( now_in_unix_time )
-    return_date = datetime.fromtimestamp( now_in_unix_time ) # rental_date + timedelta( days = random.randint( 1, 3 ) )
+    return_date = datetime.fromtimestamp( now_in_unix_time ) 
     
     Rental(
         adam,
@@ -393,6 +305,5 @@ def seeds():
         return_date
     )
     print( f"  🍿 {adam.name} just rented our only copy of {star.title}!" )
-
 
     print( "\n\n📼 📼 📼 📼 SEEDED 📼 📼 📼 📼\n" )
