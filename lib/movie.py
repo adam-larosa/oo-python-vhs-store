@@ -15,7 +15,7 @@ class Movie:
 
     @property
     def genres( self ):
-        return [ mg.genre.name for mg in MovieGenre.all if mg.movie == self ]
+        return [ mg.genre for mg in MovieGenre.all if mg.movie == self ]
 
     @property
     def vhs( self ):
