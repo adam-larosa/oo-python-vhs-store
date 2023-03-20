@@ -1,9 +1,9 @@
 import ipdb
-from faker import Faker
 import random 
 import math
 import time
 from datetime import datetime, timedelta
+from faker import Faker
 from lib import *
 
 def seeds():
@@ -216,7 +216,7 @@ def seeds():
         not_currently_rented = len( current_rentals ) < 1
         if not_currently_rented:
             return vhs
-        find_vhs_id_for_rent()    
+        find_vhs_for_rent()    
     #     vhs = Vhs.find( Vhs.pluck( :id ).shuffle.sample )
     #     return vhs.id if vhs.rentals.where( current: true ).empty?
     #     find_vhs_id_for_rent
@@ -300,7 +300,7 @@ def seeds():
     #     title = rental.vhs.movie.title
     #     puts "  🍿 #{name} returned #{title} on time."
     # end
-
+    ipdb.set_trace()
 # puts "\n✨ making some of the rentals be returned late... ✨"
 # returned_late_number.times do
 #     rented = Time.at rand( opening.to_i..now.to_i )
