@@ -224,7 +224,7 @@ def seeds():
     opening = now - timedelta( days = ( years * days_per_year ) )
 
     print( "✨ making some of the rentals be returned on time... ✨" )
-    rentals = Rental.all
+    rentals = [ r for r in Rental.all ]
     random.shuffle( rentals ) 
 
     for returned_on_time in range( returned_on_date_number ):
