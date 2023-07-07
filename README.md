@@ -2,7 +2,11 @@
 
 Welcome to your good old neighborhood VHS store. You will build an app that tracks the store inventory, the rentals and the clients. Prepare  for the 80s nostalgia.
 
----
+## Setup
+
+`pipenv install` will make sure we have ipdb included in our environment.  
+`pipenv shell` allows us access to that environment.  
+
 
 ## Associations
 
@@ -16,7 +20,7 @@ You will be working on a six-model domain: `Client`, `Rental`, `Vhs`, `Movie`, `
 - Rental belongs to a client and vhs,
 - Client has many rentals and vhs through rentals.
 
---- 
+
 
 ## ERD
 
@@ -36,7 +40,7 @@ Entity–relationship diagram does not include associations -- these you need to
 
 ![Domain model](erd.png)
 
---- 
+
 
 ## Getting Started
 
@@ -59,7 +63,7 @@ Entity–relationship diagram does not include associations -- these you need to
 
 **NOTE**: all deliverables will make you a strong dev and will allow you for a good practice with domain modeling. Please spend some time on this lab, together with your partner or on your own. This lab can also be developed into a CLI that can serve as a strong portfolio piece or blog post material. 
 
---- 
+
 
 ## Functionality
 
