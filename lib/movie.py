@@ -12,11 +12,3 @@ class Movie:
         self.description = description
         self.female_director = female_director
         Movie.all.append( self )
-
-    @property
-    def genres( self ):
-        return [ mg.genre for mg in MovieGenre.all if mg.movie == self ]
-
-    @property
-    def vhs( self ):
-        return [ v for v in Vhs.all if v.movie == self ]

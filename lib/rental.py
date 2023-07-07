@@ -5,4 +5,6 @@ class Rental:
         self.client = client
         self.vhs = vhs
         self.current = current
+        self.created_at = created_at
+        self.updated_at = updated_at
         Rental.all.append( self )
