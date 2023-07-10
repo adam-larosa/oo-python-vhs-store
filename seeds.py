@@ -253,8 +253,8 @@ def seeds():
         rental = rentals.pop( random.randrange( len( rentals ) ) )
 
         rental.current = False
-        rental.created_at: rental_date
-        rental.updated_at: return_date
+        rental.created_at = rental_date
+        rental.updated_at = return_date
         name = rental.client.name
         title = rental.vhs.movie.title
         print( f"  🍿 {name} was late returning {title}!" )
