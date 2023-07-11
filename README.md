@@ -48,7 +48,7 @@ Entity–relationship diagram does not include associations -- these you need to
 2. Fork and clone this lab.
 4. Check the code you have been given: see `lib` and files in it (is there a class for every model? are all the associations set up?).
 
-**NOTE ABOUT THE SEEDS**: the `seed`s have been commented out -- uncomment it once you've built out your models.  Also, as you can see in the file, `seed`s rely on a significant amount of randomness so while you're working if you re-seed your data, you WILL get different results in terms of number of associated instances or number of instances in general.
+**NOTE ABOUT THE SEEDS**:  As you can see in the file, `seed`s rely on a significant amount of randomness so while you're working remember running `python debug.py` will load new data, & you WILL get different results in terms of number of associated instances or number of instances in general.
 
 5. Now that you know what is missing, DO NOT CODE JUST YET. Discuss with your partner the plan for the setup: what are you going to do step by step and how are you going to test if it worked. 
 
