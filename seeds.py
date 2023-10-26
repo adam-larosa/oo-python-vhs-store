@@ -223,7 +223,8 @@ def seeds():
     now = datetime.now()
     opening = now - timedelta( days = ( years * days_per_year ) )
 
-    print( "✨ making some of the rentals be returned on time... ✨" )
+
+    print( f"✨ making {returned_on_date_number} of the rentals be returned on time... ✨" )
     rentals = [ r for r in Rental.all ]
     random.shuffle( rentals ) 
 
@@ -241,7 +242,7 @@ def seeds():
         title = rental.vhs.movie.title
         print( f"  🍿 {name} returned {title} on time." )
 
-    print( f"\n✨ making some of the rentals be returned late... ✨" )
+    print( f"\n✨ making {returned_late_number} of the rentals be returned late... ✨" )
     for returned_late in range( returned_late_number ):
         opening_in_unix_time = int( time.mktime( opening.timetuple() ) )
         now_in_unix_time = int( time.mktime( now.timetuple() ) )
@@ -259,8 +260,8 @@ def seeds():
         title = rental.vhs.movie.title
         print( f"  🍿 {name} was late returning {title}!" )
 
-    print( f"\n✨ making some of the rentals currently past due date... ✨" )
-    for returned_late in range( returned_late_number ):
+    print( f"\n✨ making {unreturned_still_late} of the rentals currently past due date... ✨" )
+    for returned_late in range( unreturned_still_late ):
         opening_in_unix_time = int( time.mktime( opening.timetuple() ) )
         now_in_unix_time = int( time.mktime( now.timetuple() ) )
         rental_unix = random.randint( opening_in_unix_time, now_in_unix_time )
@@ -295,14 +296,14 @@ def seeds():
     now_in_unix_time = int( time.mktime( now.timetuple() ) )
     now_object = datetime.fromtimestamp( now_in_unix_time )
     the_past = now_object - timedelta( days = random.randint( 1, 3 ) )
-    return_date = datetime.fromtimestamp( now_in_unix_time ) 
+    updated_at = datetime.fromtimestamp( now_in_unix_time ) 
     
     Rental(
         adam,
         Vhs( star ),
         True,
         the_past,
-        return_date
+        updated_at
     )
     print( f"  🍿 {adam.name} just rented our only copy of {star.title}!" )
 
